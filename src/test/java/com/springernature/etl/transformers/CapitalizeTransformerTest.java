@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by hrishikeshshinde on 03/12/16.
