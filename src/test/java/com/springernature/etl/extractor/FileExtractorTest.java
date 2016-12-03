@@ -19,8 +19,18 @@ public class FileExtractorTest {
         File file = new File(classLoader.getResource("sample.txt").getFile());
         String filePath = file.getAbsolutePath();
 
-        Extractor fileExtractor = new FileExtractor();
-        Collection<String> extractedContent = fileExtractor.extract(filePath);
+        Extractor fileExtractor = new FileExtractor(filePath);
+        Collection<String> extractedContent = fileExtractor.extract();
+
+        Assert.assertEquals(2, extractedContent.size());
+    }
+
+    @Test(expected = ExtractException.class)
+    public void extractInvalidFileContent() {
+        String filePath = "file not exits";
+
+        Extractor fileExtractor = new FileExtractor(filePath);
+        Collection<String> extractedContent = fileExtractor.extract();
 
         Assert.assertEquals(2, extractedContent.size());
     }
