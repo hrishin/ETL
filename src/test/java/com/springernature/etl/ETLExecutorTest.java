@@ -12,10 +12,6 @@ import org.junit.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static com.springernature.etl.transformers.WordCountTransformer.INDIRECTION_SYMBOL;
 import static java.util.stream.Collectors.groupingBy;
@@ -24,10 +20,8 @@ import static org.junit.Assert.*;
 /**
  * Created by hrishikesh_shinde on 12/4/2016.
  */
-public class ETLExecutorTest {
+public class ETLExecutorTest extends Setup {
 
-    private String sourcePath;
-    private String destinationPath;
     private Extractor extractor;
     private Transformer capitalizeTransformer, wordCountTransformer;
     private Loader loader;
@@ -35,11 +29,8 @@ public class ETLExecutorTest {
 
     @Before
     public void setup() {
-        sourcePath = "./files/source/";
-        destinationPath = "./files/destination/";
-
-        extractor = new FileExtractor(sourcePath);
-        loader = new FileLoader(destinationPath);
+        extractor = new FileExtractor(SOURCE_FILE_PATH);
+        loader = new FileLoader(DESTINATION_FILE_PATH);
     }
 
     @Test
@@ -48,8 +39,8 @@ public class ETLExecutorTest {
         etlWorkflow = new ETLExecutor(extractor, capitalizeTransformer, loader);
 
         etlWorkflow.executeSerially();
-        assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!! HELLO"));
+        assertEquals(Files.list(Paths.get(SOURCE_FILE_PATH)).count(), Files.list(Paths.get(DESTINATION_FILE_PATH)).count());
+        assertTrue(Files.readAllLines(Paths.get(DESTINATION_FILE)).contains("HELLO SIR!! HELLO"));
     }
 
     @Test
@@ -58,8 +49,8 @@ public class ETLExecutorTest {
         etlWorkflow = new ETLExecutor(extractor, capitalizeTransformer, loader);
 
         etlWorkflow.executeParallely();
-        assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!! HELLO"));
+        assertEquals(Files.list(Paths.get(SOURCE_FILE_PATH)).count(), Files.list(Paths.get(DESTINATION_FILE_PATH)).count());
+        assertTrue(Files.readAllLines(Paths.get(DESTINATION_FILE)).contains("HELLO SIR!! HELLO"));
     }
 
     @Test
@@ -68,9 +59,9 @@ public class ETLExecutorTest {
         etlWorkflow = new ETLExecutor(extractor, wordCountTransformer, loader);
 
         etlWorkflow.executeSerially();
-        assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"2"));
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
+        assertEquals(Files.list(Paths.get(SOURCE_FILE_PATH)).count(), Files.list(Paths.get(DESTINATION_FILE_PATH)).count());
+        assertTrue(Files.readAllLines(Paths.get(DESTINATION_FILE)).contains("hello"+ INDIRECTION_SYMBOL+"2"));
+        assertTrue(Files.readAllLines(Paths.get(DESTINATION_FILE)).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
     }
 
     @Test
@@ -79,8 +70,8 @@ public class ETLExecutorTest {
         etlWorkflow = new ETLExecutor(extractor, wordCountTransformer, loader);
 
         etlWorkflow.executeParallely();
-        assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"2"));
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
+        assertEquals(Files.list(Paths.get(SOURCE_FILE_PATH)).count(), Files.list(Paths.get(DESTINATION_FILE_PATH)).count());
+        assertTrue(Files.readAllLines(Paths.get(DESTINATION_FILE)).contains("hello"+ INDIRECTION_SYMBOL+"2"));
+        assertTrue(Files.readAllLines(Paths.get(DESTINATION_FILE)).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
     }
 }

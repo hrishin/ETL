@@ -2,10 +2,8 @@ package com.springernature.etl.extractors;
 
 import com.springernature.etl.Setup;
 import com.springernature.etl.domain.Document;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,11 +19,11 @@ public class FileExtractorTest extends Setup {
     @Test
     public void extractFiles() throws IOException {
 
-        Extractor fileExtractor = new FileExtractor(sourceFilePath);
+        Extractor fileExtractor = new FileExtractor(SOURCE_FILE_PATH);
         Collection<Document> extractedContent = fileExtractor.extract();
 
         long actualFileCount = extractedContent.size();
-        long expectedFileCount = Files.list(Paths.get(sourceFilePath)).count();
+        long expectedFileCount = Files.list(Paths.get(SOURCE_FILE_PATH)).count();
 
         assertEquals(expectedFileCount, actualFileCount);
     }
