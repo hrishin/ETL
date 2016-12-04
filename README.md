@@ -39,11 +39,11 @@ mvn clean package -Dmaven.test.skip=true
 ### Usage
 
 ```
-java -jar ETLDemo-1.0.0.jar <extractor locaion> <loader locaion>  <transformer>
+java -jar ETLDemo-1.0.0.jar <extractor location> <loader location>  <transformer>
 ```
 Application requires 3 command line arguments to work
 
-loader locaion: It's assumed that loader location do exists, application may not garantee of creating loader location
+loader location: It's assumed that loader location do exists, application may not garantee of creating loader directory
 
 transformer:  argument supports only two possible values, 'capitalize' or 'wordcount'
 
