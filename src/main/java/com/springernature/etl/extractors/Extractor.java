@@ -1,4 +1,4 @@
-package com.springernature.etl.extractor;
+package com.springernature.etl.extractors;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package com.springernature.etl.extractor;
+package com.springernature.etl.extractors;
 
 /**
  * Created by hrishikeshshinde on 03/12/16.

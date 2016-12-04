@@ -1,9 +1,8 @@
-package com.springernature.etl.extractor;
+package com.springernature.etl.extractors;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 

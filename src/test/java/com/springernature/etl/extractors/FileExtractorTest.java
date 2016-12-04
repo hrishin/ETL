@@ -1,12 +1,10 @@
-package com.springernature.etl.extractor;
+package com.springernature.etl.extractors;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.Collection;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by hrishikeshshinde on 03/12/16.
