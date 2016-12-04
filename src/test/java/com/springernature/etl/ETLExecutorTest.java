@@ -48,6 +48,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!!"));
     }
 
     @Test
@@ -57,6 +58,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeParallely();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!!"));
     }
 
     @Test
@@ -66,23 +68,18 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello -> 1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!! -> 1"));
     }
 
     @Test
-    public void lambdaTest() {
-        Collection<String> data = Arrays.asList("Hello world hello", "Hello");
-        data.stream()
-            .flatMap(Pattern.compile(" ")::splitAsStream)
-            .map(String::toLowerCase)
-            .collect(Collectors.toList())
-                .stream()
-                .collect(groupingBy(s -> s, Collectors.counting()))
-        .entrySet()
-                .stream()
-                .map(entry ->  {return entry.getKey() + "->" + entry.getValue();})
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
+    public void executeWordCountParalally() throws Exception {
+        wordCountTransformer = new WordCountTransformer();
+        etlWorkflow = new ETLExecutor(extractor, wordCountTransformer, loader);
 
-
+        etlWorkflow.executeParallely();
+        assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello -> 1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!! -> 1"));
     }
 }

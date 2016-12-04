@@ -31,21 +31,4 @@ public class ApplicationTest {
         Assert.assertTrue(result == true);
 
     }
-
-    @Test
-    public void basicETL() {
-
-        String sourcePath = "./files/source/";
-        String destinationPath = "./files/destination/";
-
-        Extractor extractor = new FileExtractor(sourcePath);
-        Transformer transformer = new CapitalizeTransformer();
-        Loader loader = new FileLoader(destinationPath);
-
-        ETLExecutor etlWorkflow = new ETLExecutor(extractor, transformer, loader);
-        etlWorkflow.executeParallely();
-
-    }
-
-
 }
