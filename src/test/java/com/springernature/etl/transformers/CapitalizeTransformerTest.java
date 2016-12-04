@@ -1,5 +1,6 @@
 package com.springernature.etl.transformers;
 
+import com.springernature.etl.domain.Document;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -19,12 +20,13 @@ public class CapitalizeTransformerTest {
     public void capitalizeString() throws IOException {
         Collection<String> content = new LinkedHashSet<>();
         content.add("hello");
+        Document inputDocument = new Document("sample.txt",content);
 
         Transformer transformer = new CapitalizeTransformer();
-        Collection<String> capitalizedContents = transformer.transform(content);
+        Document transformedDocument = transformer.transform(inputDocument);
 
-        assertEquals(content.size(), capitalizedContents.size());
-        capitalizedContents
+        assertEquals(inputDocument.getData().size(), inputDocument.getData().size());
+        transformedDocument.getData()
                 .stream()
                 .forEach(c -> {
                     assertTrue(StringUtils.isAllUpperCase(c));

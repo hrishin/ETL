@@ -1,10 +1,10 @@
 package com.springernature.etl.transformers;
 
-import java.util.Collection;
+import com.springernature.etl.domain.Document;
 
 /**
  * Created by hrishikeshshinde on 03/12/16.
  */
 public interface Transformer {
-    Collection<String> transform(Collection<String> content);
+    Document transform(Document content);
 }

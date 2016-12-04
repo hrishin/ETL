@@ -1,5 +1,7 @@
 package com.springernature.etl.transformers;
 
+import com.springernature.etl.domain.Document;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -9,10 +11,14 @@ import java.util.stream.Collectors;
 public class CapitalizeTransformer implements Transformer {
 
     @Override
-    public Collection<String> transform(Collection<String> content) {
-        return content.stream()
+    public Document transform(Document document) {
+        return new Document(document.getName(), capitalizeContent(document.getData()));
+    }
+
+    private Collection<String> capitalizeContent(Collection<String> data) {
+        return data
+                .stream()
                 .map(String::toUpperCase)
                 .collect(Collectors.toList());
-
     }
 }
