@@ -5,8 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
 
-import static java.nio.file.StandardOpenOption.CREATE;
-import static java.nio.file.StandardOpenOption.WRITE;
+import static java.nio.file.StandardOpenOption.*;
 
 /**
  * Created by hrishikesh_shinde on 12/4/2016.
@@ -29,9 +28,10 @@ public class Document {
     }
 
     public boolean saveToFile(String location) throws IOException {
-            Files.write(Paths.get(location+name), (Iterable<String>) data.stream()::iterator,
-                    CREATE, WRITE);
-            return true;
+        Files.deleteIfExists(Paths.get(location+name));
+        Files.write(Paths.get(location+name), (Iterable<String>) data.stream()::iterator,
+                                    CREATE, TRUNCATE_EXISTING, WRITE);
+        return true;
 
     }
 }
