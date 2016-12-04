@@ -12,7 +12,7 @@ Following set of Trasnformers supported
 Following set of Loaders supported
   * File
 
-Additinally ETL can execute flow serially of concurrently, default behaviour is concurrent execution
+Additinally ETL can execute flow serially or concurrently, default behaviour is concurrent execution
 
 ### Build
 Dev. Environment:
