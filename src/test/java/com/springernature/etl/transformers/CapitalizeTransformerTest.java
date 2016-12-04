@@ -19,7 +19,7 @@ public class CapitalizeTransformerTest {
     @Test
     public void capitalizeString() throws IOException {
         Collection<String> content = new LinkedHashSet<>();
-        content.add("hello");
+        content.add("hello world!");
         Document inputDocument = new Document("sample.txt",content);
 
         Transformer transformer = new CapitalizeTransformer();
@@ -29,7 +29,7 @@ public class CapitalizeTransformerTest {
         transformedDocument.getData()
                 .stream()
                 .forEach(c -> {
-                    assertTrue(StringUtils.isAllUpperCase(c));
+                    assertEquals("HELLO WORLD!", c);
                 });
     }
 
