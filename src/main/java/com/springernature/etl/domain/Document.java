@@ -33,7 +33,6 @@ public class Document {
         try {
             Files.write(Paths.get(location+name), (Iterable<String>) data.stream()::iterator,
                     CREATE, WRITE);
-
             return true;
         } catch (IOException e) {
             e.printStackTrace();

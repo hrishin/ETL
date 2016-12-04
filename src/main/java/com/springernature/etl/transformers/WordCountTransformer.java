@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.groupingBy;
 /**
  * Created by hrishikesh_shinde on 12/4/2016.
  */
-public class WorldCountTransformer implements Transformer {
+public class WordCountTransformer implements Transformer {
     @Override
     public Document transform(Document document) {
         return new Document(document.getName(), getWordCountAsList(document.getData()));

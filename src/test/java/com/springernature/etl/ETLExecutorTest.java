@@ -6,21 +6,18 @@ import com.springernature.etl.loaders.FileLoader;
 import com.springernature.etl.loaders.Loader;
 import com.springernature.etl.transformers.CapitalizeTransformer;
 import com.springernature.etl.transformers.Transformer;
+import com.springernature.etl.transformers.WordCountTransformer;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Map;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 /**
@@ -31,7 +28,7 @@ public class ETLExecutorTest {
     private String sourcePath;
     private String destinationPath;
     private Extractor extractor;
-    private Transformer transformer;
+    private Transformer capitalizeTransformer, wordCountTransformer;
     private Loader loader;
     private ETLExecutor etlWorkflow;
 
@@ -41,21 +38,33 @@ public class ETLExecutorTest {
         destinationPath = "./files/destination/";
 
         extractor = new FileExtractor(sourcePath);
-        transformer = new CapitalizeTransformer();
         loader = new FileLoader(destinationPath);
-
-        etlWorkflow = new ETLExecutor(extractor, transformer, loader);
     }
 
     @Test
-    public void executeSerially() throws Exception {
+    public void executeCapitalizationSerially() throws Exception {
+        capitalizeTransformer = new CapitalizeTransformer();
+        etlWorkflow = new ETLExecutor(extractor, capitalizeTransformer, loader);
+
         etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
     }
 
     @Test
-    public void executeParallely() throws Exception {
+    public void executeCapitalizationParallely() throws Exception {
+        capitalizeTransformer = new CapitalizeTransformer();
+        etlWorkflow = new ETLExecutor(extractor, capitalizeTransformer, loader);
+
         etlWorkflow.executeParallely();
+        assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
+    }
+
+    @Test
+    public void executeWordCountSerially() throws Exception {
+        wordCountTransformer = new WordCountTransformer();
+        etlWorkflow = new ETLExecutor(extractor, wordCountTransformer, loader);
+
+        etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
     }
 
