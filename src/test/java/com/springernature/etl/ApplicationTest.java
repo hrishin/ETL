@@ -19,19 +19,6 @@ import java.util.Collection;
 public class ApplicationTest {
 
     @Test
-    public void load() throws IOException {
-        File file = File.createTempFile( "sample", "text");
-        String filePath = file.getAbsolutePath();
-        Object transformedContent = "TEST TEST";
-
-        Loader fileLoader = new FileLoader(filePath);
-        boolean result = fileLoader.load(transformedContent);
-
-        Assert.assertTrue(result);
-    }
-
-
-    @Test
     public void document() {
         String name = "test.text";
         Collection<String> data = Arrays.asList("Hello", "Hi", "Namaste");

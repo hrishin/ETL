@@ -1,6 +1,8 @@
 package com.springernature.etl.loaders;
 
 
+import com.springernature.etl.domain.Document;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -17,43 +19,7 @@ public class FileLoader implements Loader {
     }
 
     @Override
-    public boolean load(Object transformedContent) {
-        FileOutputStream fout = null;
-        ObjectOutputStream oos = null;
-
-        try {
-            fout = new FileOutputStream(filePath);
-            oos = new ObjectOutputStream(fout);
-            oos.writeObject(transformedContent);
-            return true;
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            cleanFileStream(fout);
-            cleanObjectStream(oos);
-        }
-
-        return false;
-    }
-
-    private void cleanFileStream(FileOutputStream fout) {
-        if (fout != null) {
-            try {
-                fout.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void cleanObjectStream(ObjectOutputStream oos) {
-        if (oos != null) {
-            try {
-                oos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public boolean load(Document transformedContent) {
+        return transformedContent.save(filePath);
     }
 }
