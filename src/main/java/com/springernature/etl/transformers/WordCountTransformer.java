@@ -14,6 +14,10 @@ import static java.util.stream.Collectors.groupingBy;
  * Created by hrishikesh_shinde on 12/4/2016.
  */
 public class WordCountTransformer implements Transformer {
+
+    public static final String SPACE_REGEX = " ";
+    public static final String INDIRECTION_SYMBOL = " -> ";
+
     @Override
     public Document transform(Document document) {
         return new Document(document.getName(), getWordCountAsList(document.getData()));
@@ -21,7 +25,7 @@ public class WordCountTransformer implements Transformer {
 
     private Collection<String> getWordCountAsList(Collection<String> data) {
         return CountWords(data.stream()
-                .flatMap(Pattern.compile(" ")::splitAsStream)
+                .flatMap(Pattern.compile(SPACE_REGEX)::splitAsStream)
                 .map(String::toLowerCase)
                 .collect(Collectors.toList()));
 
@@ -36,7 +40,7 @@ public class WordCountTransformer implements Transformer {
     private Collection<String> fromMapToCollection(Map<String, Long> wordCountData) {
         return wordCountData.entrySet()
                 .stream()
-                .map(e -> {return e.getKey()+" -> "+e.getValue();})
+                .map(e -> {return e.getKey()+ INDIRECTION_SYMBOL +e.getValue();})
                 .collect(Collectors.toList());
     }
 }

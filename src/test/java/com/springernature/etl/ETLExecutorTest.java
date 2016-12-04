@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.springernature.etl.transformers.WordCountTransformer.INDIRECTION_SYMBOL;
 import static java.util.stream.Collectors.groupingBy;
 import static org.junit.Assert.*;
 
@@ -68,8 +69,8 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello -> 1"));
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!! -> 1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeParallely();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello -> 1"));
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!! -> 1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
     }
 }

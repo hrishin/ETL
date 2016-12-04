@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static com.springernature.etl.transformers.WordCountTransformer.INDIRECTION_SYMBOL;
 import static org.junit.Assert.*;
 
 /**
@@ -18,8 +19,8 @@ public class WordCountTransformerTest {
         Transformer transformer = new WordCountTransformer();
         Document transformedDocument = transformer.transform(sourceDocument);
 
-        assertTrue(transformedDocument.getData().contains("hello -> 2"));
-        assertTrue(transformedDocument.getData().contains("world -> 1"));
+        assertTrue(transformedDocument.getData().contains("hello"+ INDIRECTION_SYMBOL+"2"));
+        assertTrue(transformedDocument.getData().contains("world"+ INDIRECTION_SYMBOL+"1"));
     }
 
 }
