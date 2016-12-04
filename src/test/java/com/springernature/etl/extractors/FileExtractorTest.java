@@ -1,25 +1,33 @@
 package com.springernature.etl.extractors;
 
+import com.springernature.etl.Setup;
 import com.springernature.etl.domain.Document;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by hrishikeshshinde on 03/12/16.
  */
-public class FileExtractorTest {
+public class FileExtractorTest extends Setup {
 
     @Test
-    public void extractFileContent() {
-       String filePath = "./files/source/";
+    public void extractFileContent() throws IOException {
 
-        Extractor fileExtractor = new FileExtractor(filePath);
+        Extractor fileExtractor = new FileExtractor(sourceFilePath);
         Collection<Document> extractedContent = fileExtractor.extract();
 
-        Assert.assertEquals(1, extractedContent.size());
+        long actualFileCount = extractedContent.size();
+        long expectedFileCount = Files.list(Paths.get(sourceFilePath)).count();
+
+        assertEquals(expectedFileCount, actualFileCount);
     }
 
     @Test(expected = ExtractException.class)
@@ -29,6 +37,6 @@ public class FileExtractorTest {
         Extractor fileExtractor = new FileExtractor(filePath);
         Collection<Document> extractedContent = fileExtractor.extract();
 
-        Assert.assertEquals(2, extractedContent.size());
+        assertEquals(2, extractedContent.size());
     }
 }
