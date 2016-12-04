@@ -29,14 +29,10 @@ public class Document {
         return data;
     }
 
-    public boolean saveToFile(String location) {
-        try {
+    public boolean saveToFile(String location) throws IOException {
             Files.write(Paths.get(location+name), (Iterable<String>) data.stream()::iterator,
                     CREATE, WRITE);
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+
     }
 }

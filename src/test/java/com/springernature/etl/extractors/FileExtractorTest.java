@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class FileExtractorTest extends Setup {
 
     @Test
-    public void extractFileContent() throws IOException {
+    public void extractFiles() throws IOException {
 
         Extractor fileExtractor = new FileExtractor(sourceFilePath);
         Collection<Document> extractedContent = fileExtractor.extract();
@@ -32,11 +32,9 @@ public class FileExtractorTest extends Setup {
 
     @Test(expected = ExtractException.class)
     public void extractInvalidFileContent() {
-        String filePath = "file not exits";
+        String filePath = "file path not exits";
 
         Extractor fileExtractor = new FileExtractor(filePath);
-        Collection<Document> extractedContent = fileExtractor.extract();
-
-        assertEquals(2, extractedContent.size());
+        fileExtractor.extract();
     }
 }

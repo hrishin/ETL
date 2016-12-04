@@ -1,2 +1,29 @@
-Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+IoT - Internet of Things.
+IoT is around corner for a while and we are hearing it in the form home automation, smartcity, self drive vehicle and much more.
+
+Well, lets come to the point what IoT exactly means and see does it really matters. 
+Formal information of IoT is here but IoT incredibly making it’s way towards making every day things smarter like phone to airliner, home to factory to office to city, may be planet to space as well (just kidding).
+
+Lets co-relate it with existing trend of phone revolution and try to understand what IoT could do in the same way.
+We are using phone, mobile phone around decade now but what is smartphone then? what makes phone smart?
+
+First thing smartphone is sensible, in the sense it knows it’s own context with respect to its physical environment and second thing it comes with better and programmable software ecosystem.
+
+e.g. you put your phone to ear while calling then screen goes off (prevents touchscreen activities), it can sense light intensity and adjust brightness of screen (better outdoor experience and battery optimizations), you can play motion games by moving phones rather taping buttons/screens only (more interactive and real experience), it knows its location (maps, directions), it can unlock itself by thumb recognition (security at thumb), it can recognise the objects from camera (QR code scanning), it can take voice commands (Apple’s Siri, Google’s Voice, Microsoft’s Cortana), paramount important internet connectivity (needless to say), sufficient processing and memory resources.
+
+Now key point behind these aspects is automation and better experience in routine activities while using phone.
+This is possible because
+
+Set of sensors working behind the hood like proximity, gyroscope, GPS, camera, modem and some more.
+OS, software/app ecosystem designed in the form of configurable and programmable way (software defined)
+Today rest is the history and at the same time we are witnessing how “smartphones” changing our generation and planet.
+E.g. Location service and connectivity changed the way we commute with Uber, Pokemon Go, Watsapp, Its exponential basically in many ways.
+
+Now lets take same analogy in broader perspective on other thing present in our life, every(thing) surrounding us is getting smart now.
+What makes this things smart? Things are getting more sensible through sensors, home/street light knows when to get turn on/off at what intensity like smartphone example of screen brightness, owner reaches near to car then unlock the door, if moisture level gets drop after certain level turn on water irrigation till moisture level reach to desired level for agriculture and gardens. Great example of smart thing is Tesla's, Google's self driving/autonomous car which is equipped with monocular forward-looking camera,64-beam LIDAR radar respectively which localizes car on street, follow/change lanes, detect obstacles with 360 degree are upto few cm's (10-15), detect the curvature of highway lane makers.
+
+This kind of automation is going to help us in utilizing the resources at optimum level and going make it more efficient, safe in usage.
+The software ecosystem in IoT for things making it configurable and forcing it to behave as per physical context (software defined) e.g. Tesla car software getting On The Air (OTA) updates just like we get one for Android/iOS phones.
+
+SmartThings are having internet connectivity (Internet of Things), which could allow connect millions of smart things (billions of sensors) to cloud compute power machine brain through big data, machine learning capabilities like IBM Watson IoT. These machine brains are evolving with massive intelligence could be game changing from home to entire planet.
+IoT could be next exponential trend like what smartphone did, it's not only going to automate the way we live but in the true sense it could make things very smart behave them like bots/autobots.

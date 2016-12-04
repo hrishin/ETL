@@ -49,7 +49,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!!"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!! HELLO"));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeParallely();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!!"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("HELLO SIR!! HELLO"));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeSerially();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"2"));
         assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
     }
 
@@ -80,7 +80,7 @@ public class ETLExecutorTest {
 
         etlWorkflow.executeParallely();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
-        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"1"));
+        assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("hello"+ INDIRECTION_SYMBOL+"2"));
         assertTrue(Files.readAllLines(Paths.get(destinationPath+"test.txt")).contains("sir!!"+ INDIRECTION_SYMBOL+"1"));
     }
 }

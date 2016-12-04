@@ -21,15 +21,15 @@ public class ETLExecutor {
     public void executeSerially() {
         extractor.extract()
                 .stream()
-                .map(d -> {return transformer.transform(d);})
-                .forEach(d -> loader.load(d));
+                .map(transformer::transform)
+                .forEach(loader::load);
     }
 
     public void executeParallely() {
         extractor.extract()
                 .parallelStream()
-                .map(d -> {return transformer.transform(d);})
-                .forEach(d -> loader.load(d));
+                .map(transformer::transform)
+                .forEach(loader::load);
 
     }
 }

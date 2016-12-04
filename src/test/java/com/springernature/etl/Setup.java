@@ -5,5 +5,7 @@ package com.springernature.etl;
  */
 public class Setup {
     protected final String sourceFilePath = "./files/source/";
-    protected final String destinationFilePath = "./files/source/";
+    protected final String destinationFilePath = "./files/destination/";
+    protected final String sourceFile = sourceFilePath + "test.txt";
+    protected final String destinationFile = destinationFilePath+"test.txt";
 }

@@ -10,6 +10,7 @@ import com.springernature.etl.transformers.Transformer;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -19,16 +20,4 @@ import java.util.Collection;
 
 public class ApplicationTest {
 
-    @Test
-    public void document() {
-        String name = "test.text";
-        Collection<String> data = Arrays.asList("Hello", "Hi", "Namaste");
-        String location = "./files/destination/";
-
-        Document document = new Document(name, data);
-        boolean result = document.saveToFile(location);
-
-        Assert.assertTrue(result == true);
-
-    }
 }

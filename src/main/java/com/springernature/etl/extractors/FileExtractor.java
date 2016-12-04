@@ -18,7 +18,7 @@ public class FileExtractor implements Extractor {
     private String filePath;
 
     public FileExtractor(String filePath) {
-        this.filePath = filePath;
+        this.filePath = !filePath.endsWith("/") ? filePath +"/" : filePath;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class FileExtractor implements Extractor {
                 .collect(Collectors.toList());
 
         } catch (IOException e) {
-            throw new ExtractException("file not found", e);
+            throw new ExtractException("Source file path issue :" + filePath , e);
         }
     }
 
