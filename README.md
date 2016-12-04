@@ -43,6 +43,8 @@ java -jar ETLDemo-1.0.0.jar <extractor locaion> <loader locaion>  <transformer>
 ```
 Application requires 3 command line arguments to work
 
+loader locaion: It's assumed that loader location do exists, application may not garantee of creating loader location
+
 transformer:  argument supports only two possible values, 'capitalize' or 'wordcount'
 
 sample
