@@ -1,5 +1,6 @@
 package com.springernature.etl.extractors;
 
+import com.springernature.etl.domain.Document;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,14 +14,12 @@ public class FileExtractorTest {
 
     @Test
     public void extractFileContent() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("sample.txt").getFile());
-        String filePath = file.getAbsolutePath();
+       String filePath = "./files/source/";
 
         Extractor fileExtractor = new FileExtractor(filePath);
-        Collection<String> extractedContent = fileExtractor.extract();
+        Collection<Document> extractedContent = fileExtractor.extract();
 
-        Assert.assertEquals(2, extractedContent.size());
+        Assert.assertEquals(1, extractedContent.size());
     }
 
     @Test(expected = ExtractException.class)
@@ -28,7 +27,7 @@ public class FileExtractorTest {
         String filePath = "file not exits";
 
         Extractor fileExtractor = new FileExtractor(filePath);
-        Collection<String> extractedContent = fileExtractor.extract();
+        Collection<Document> extractedContent = fileExtractor.extract();
 
         Assert.assertEquals(2, extractedContent.size());
     }
