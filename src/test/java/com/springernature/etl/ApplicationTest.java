@@ -1,14 +1,9 @@
 package com.springernature.etl;
 
 import com.springernature.etl.domain.Document;
-import com.springernature.etl.loaders.FileLoader;
-import com.springernature.etl.loaders.Loader;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -25,7 +20,7 @@ public class ApplicationTest {
         String location = "./files/destination/";
 
         Document document = new Document(name, data);
-        boolean result = document.save(location);
+        boolean result = document.saveToFile(location);
 
         Assert.assertTrue(result == true);
 

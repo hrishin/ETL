@@ -29,7 +29,7 @@ public class Document {
         return data;
     }
 
-    public boolean save(String location) {
+    public boolean saveToFile(String location) {
         try {
             Files.write(Paths.get(location+name), (Iterable<String>) data.stream()::iterator,
                     CREATE, WRITE);
