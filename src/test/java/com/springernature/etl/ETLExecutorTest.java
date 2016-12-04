@@ -11,7 +11,16 @@ import org.junit.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 /**
@@ -48,5 +57,23 @@ public class ETLExecutorTest {
     public void executeParallely() throws Exception {
         etlWorkflow.executeParallely();
         assertEquals(Files.list(Paths.get(sourcePath)).count(), Files.list(Paths.get(destinationPath)).count());
+    }
+
+    @Test
+    public void lambdaTest() {
+        Collection<String> data = Arrays.asList("Hello world hello", "Hello");
+        data.stream()
+            .flatMap(Pattern.compile(" ")::splitAsStream)
+            .map(String::toLowerCase)
+            .collect(Collectors.toList())
+                .stream()
+                .collect(groupingBy(s -> s, Collectors.counting()))
+        .entrySet()
+                .stream()
+                .map(entry ->  {return entry.getKey() + "->" + entry.getValue();})
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+
+
     }
 }
