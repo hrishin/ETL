@@ -18,7 +18,7 @@ public class CapitalizeTransformerTest extends Setup {
 
     @Test
     public void capitalizeString() throws IOException {
-        Document inputDocument = new Document("test.txt", Files.readAllLines(Paths.get(SOURCE_FILE)));
+        Document inputDocument = new Document(TEST_FILE, Files.readAllLines(Paths.get(SOURCE_FILE)));
 
         Transformer transformer = new CapitalizeTransformer();
         Document transformedDocument = transformer.transform(inputDocument);

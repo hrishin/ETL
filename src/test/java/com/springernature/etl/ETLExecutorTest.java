@@ -14,8 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static com.springernature.etl.transformers.WordCountTransformer.INDIRECTION_SYMBOL;
-import static java.util.stream.Collectors.groupingBy;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by hrishikesh_shinde on 12/4/2016.

@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static com.springernature.etl.transformers.WordCountTransformer.INDIRECTION_SYMBOL;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by hrishikesh_shinde on 12/4/2016.
@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class WordCountTransformerTest extends Setup {
     @Test
     public void countWords() throws Exception {
-        Document sourceDocument = new Document("test.txt", Files.readAllLines(Paths.get(SOURCE_FILE)));
+        Document sourceDocument = new Document(TEST_FILE, Files.readAllLines(Paths.get(SOURCE_FILE)));
 
         Transformer transformer = new WordCountTransformer();
         Document transformedDocument = transformer.transform(sourceDocument);
