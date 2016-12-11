@@ -25,13 +25,9 @@ public class FileExtractor implements Extractor {
     public Collection<Document> extract() {
         try (Stream<Path> paths = Files.walk(Paths.get(filePath))){
             return paths
-                .filter(filePath -> {
-                    return Files.isRegularFile(filePath);
-                })
-                .map(path -> {
-                    return prepareDocument(path);
-                })
-                .filter(d -> {return d != null;})
+                .filter(filePath -> Files.isRegularFile(filePath))
+                .map(path -> prepareDocument(path))
+                .filter(d -> d != null)
                 .collect(Collectors.toList());
 
         } catch (IOException e) {

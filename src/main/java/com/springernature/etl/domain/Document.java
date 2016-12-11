@@ -29,7 +29,7 @@ public class Document {
 
     public boolean saveToFile(String location) throws IOException {
         Files.deleteIfExists(Paths.get(location+name));
-        Files.write(Paths.get(location+name), (Iterable<String>) data.stream()::iterator,
+        Files.write(Paths.get(location + name), (Iterable<String>) data.stream()::iterator,
                                     CREATE, TRUNCATE_EXISTING, WRITE);
         return true;
 

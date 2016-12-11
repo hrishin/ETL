@@ -3,6 +3,7 @@ package com.springernature.etl.transformers;
 import com.springernature.etl.domain.Document;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -40,7 +41,8 @@ public class WordCountTransformer implements Transformer {
     private Collection<String> fromMapToCollection(Map<String, Long> wordCountData) {
         return wordCountData.entrySet()
                 .stream()
-                .map(e -> {return e.getKey()+ INDIRECTION_SYMBOL +e.getValue();})
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .map(e -> e.getKey()+ INDIRECTION_SYMBOL +e.getValue())
                 .collect(Collectors.toList());
     }
 }
